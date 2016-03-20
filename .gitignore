@@ -34,3 +34,4 @@ node_modules
 
 # MACS
 .DS_STORE
+*.swp
