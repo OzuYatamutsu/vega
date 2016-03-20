@@ -1,0 +1,16 @@
+{
+  "name": "vega",
+  "version": "0.0.1",
+  "description": "A task-based dashboard for your home",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sean Collins",
+  "license": "MIT",
+  "dependencies": {
+    "fs": "latest",
+    "selenium-standalone": "latest",
+    "webdriverio": "latest"  
+  }
+}
