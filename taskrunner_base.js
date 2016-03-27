@@ -32,7 +32,7 @@ Taskrunner.prototype.evalData = (data) => {
 };
 
 Taskrunner.prototype.run = () => {
-  if (taskFile == null) return false;
+  if (this.taskFile == null) return false;
   var data = "";
   try {
     data = fs.readFileSync(taskFile);
