@@ -11,12 +11,19 @@ function Taskrunner(taskFile) {
 Taskrunner.prototype = Object.create(Object.prototype);
 Taskrunner.constructor = Taskrunner;
 
-Taskrunner.prototype.setup = function() {
+Taskrunner.prototype.setup = function(cb) {
   if (this.isReady) return;
-  selenium.install(() => {
-    selenium.start(() => {
-      client = webdriverio.remote();
-      return client.init().then(() => {this.isReady = true;});
+  console.log("Selenium is initing...");
+  selenium.install({"logger": (message) => {console.log(message)}}, () => {
+    selenium.start({"logger": (message) => {console.log(message)}}, () => {
+      this.client = webdriverio.remote();
+      this.isReady = true;
+      console.log("Selenium is inited and ready to go!");
+      cb.call();
+      //this.client.init().then((client) => {
+      //  this.client = client;
+      //  cb.call();
+      //});
     });
   });
 };
@@ -26,8 +33,6 @@ Taskrunner.prototype.teardown = function() {
 };
 
 Taskrunner.prototype.evalData = function(data) {
-  // TODO: ew, spinwait
-  while (!this.isReady) {}
   eval(data);
 };
 
@@ -41,14 +46,13 @@ Taskrunner.prototype.run = function() {
   }
 
   // Run task
-  this.setup();
-  this.evalData(data);
+  this.setup(() => {this.evalData(data);});
   this.teardown();
 
   // TODO
-  var task = new Promise(this.setup, this.setupError)
-    .then(() => this.evalData(data), this.runtimeError)
-    .then(this.teardown, this.teardownError);
+  //var task = new Promise(this.setup, this.setupError)
+  //  .then(() => this.evalData(data), this.runtimeError)
+  //  .then(this.teardown, this.teardownError);
 };
 
 Taskrunner.prototype.setupError = function() {
