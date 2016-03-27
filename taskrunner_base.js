@@ -12,11 +12,11 @@ Taskrunner.prototype = Object.create(Object.prototype);
 Taskrunner.constructor = Taskrunner;
 
 Taskrunner.prototype.setup = function() {
-  if (isReady) return;
+  if (this.isReady) return;
   selenium.install(() => {
     selenium.start(() => {
       client = webdriverio.remote();
-      client.init().then(() => {this.isReady = true;});
+      return client.init().then(() => {this.isReady = true;});
     });
   });
 };
@@ -27,7 +27,7 @@ Taskrunner.prototype.teardown = function() {
 
 Taskrunner.prototype.evalData = function(data) {
   // TODO: ew, spinwait
-  while (!isReady) {}
+  while (!this.isReady) {}
   eval(data);
 };
 
@@ -35,13 +35,12 @@ Taskrunner.prototype.run = function() {
   if (this.taskFile == null) return false;
   var data = "";
   try {
-    data = fs.readFileSync(taskFile);
+    data = fs.readFileSync(this.taskFile);
   } catch (err) {
     console.error("Error reading provided task file.");
   }
 
   // Run task
-  console.log(setup);
   this.setup();
   this.evalData(data);
   this.teardown();
