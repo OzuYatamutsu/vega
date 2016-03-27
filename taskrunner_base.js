@@ -14,16 +14,13 @@ Taskrunner.constructor = Taskrunner;
 Taskrunner.prototype.setup = function(cb) {
   if (this.isReady) return;
   console.log("Selenium is initing...");
-  selenium.install({"logger": (message) => {console.log(message)}}, () => {
-    selenium.start({"logger": (message) => {console.log(message)}}, () => {
-      this.client = webdriverio.remote();
+  selenium.install({"drivers": "chrome", "logger": (message) => {console.log(message)}}, () => {
+    selenium.start({"drivers": "chrome", "logger": (message) => {console.log(message)}}, () => {
+      var options = {desiredCapabilities: { browserName: 'chrome' }};
+      this.client = webdriverio.remote(options);
       this.isReady = true;
       console.log("Selenium is inited and ready to go!");
       cb.call();
-      //this.client.init().then((client) => {
-      //  this.client = client;
-      //  cb.call();
-      //});
     });
   });
 };
@@ -40,7 +37,7 @@ Taskrunner.prototype.run = function() {
   if (this.taskFile == null) return false;
   var data = "";
   try {
-    data = fs.readFileSync(this.taskFile);
+    data = fs.readFileSync(this.taskFile, 'utf8');
   } catch (err) {
     console.error("Error reading provided task file.");
   }
