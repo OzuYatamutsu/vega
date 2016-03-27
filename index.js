@@ -9,8 +9,8 @@ var client = ""; // WebdriverIO client
 
 function main() {
   // DEBUG
-  var Taskrunner = new Taskrunner("tasks/check_if_apt_payment_due.task");
-  Taskrunner.run();
+  var runner = new Taskrunner("tasks/check_if_apt_payment_due.task");
+  runner.run();
 }
 
 if (require.main === module) {

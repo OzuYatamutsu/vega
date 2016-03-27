@@ -8,6 +8,9 @@ function Taskrunner(taskFile) {
   this.isReady = false;
 }
 
+Taskrunner.prototype = Object.create(Object.prototype);
+Taskrunner.constructor = Taskrunner;
+
 Taskrunner.prototype.setup = () => { 
   if (isReady) return;
   selenium.install(() => {
