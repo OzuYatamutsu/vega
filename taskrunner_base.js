@@ -15,7 +15,7 @@ Taskrunner.prototype.setup = function(cb) {
   if (this.isReady) return;
   console.log("Selenium is initing...");
   selenium.install({"drivers": "chrome", "logger": (message) => {console.log(message)}}, () => {
-    selenium.start({"drivers": "chrome", "logger": (message) => {console.log(message)}}, () => {
+    selenium.start({"logger": (message) => {console.log(message)}}, () => {
       var options = {desiredCapabilities: { browserName: 'chrome' }};
       this.client = webdriverio.remote(options);
       this.isReady = true;
