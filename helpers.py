@@ -8,7 +8,7 @@ def getFirstAvailableBrowser(verbose=False):
         'Chrome': lambda: webdriver.Chrome(),
         'Firefox': lambda: webdriver.Firefox(), 
         'Opera': lambda: webdriver.Opera(),
-        'Ie': lambda: webdriver.PhantomJS()
+        'Ie': lambda: webdriver.Ie()
     }
     
     for browser in browsers:
@@ -19,6 +19,7 @@ def getFirstAvailableBrowser(verbose=False):
             return browsers[browser]()
         except:
             print(I_GET_BROWSER_NSUPPORT % browser)
+            continue
     print(E_GET_BROWSER_NONE)
-    for browser in browsers: print(browser + '\n')
+    for browser in browsers: print(browser)
     return None
