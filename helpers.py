@@ -17,7 +17,7 @@ def getFirstAvailableBrowser(verbose=False):
             browsers[browser]().quit()
             print(I_GET_BROWSER_SUPPORT % browser)
             return browsers[browser]()
-        except WebDriverException:
+        except:
             print(I_GET_BROWSER_NSUPPORT % browser)
     print(E_GET_BROWSER_NONE)
     for browser in browsers: print(browser + '\n')
