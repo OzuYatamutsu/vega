@@ -1160,7 +1160,7 @@
 			}
 
 			h1 {
-				font-size: 2.4em;
+				font-size: 2.0em;
 				letter-spacing: -0.015em;
 			}
 
@@ -1405,15 +1405,15 @@
 					#me header > h1 {
 						position: absolute;
 						left: 0;
-						bottom: 52.5%;
+						bottom: 80.0%;
 						margin: 0;
 					}
 
 					#me header > p {
 						position: absolute;
-						left: 0;
-						top: 52.5%;
-						font-size: 1.5em;
+						left: 0.3%;
+						top: 20%;
+						font-size: 1.0em;
 						letter-spacing: -0.015em;
 						margin-top: 0;
 					}
