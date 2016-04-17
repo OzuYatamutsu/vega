@@ -5,7 +5,8 @@ I_GET_BROWSER_NSUPPORT = I_FLAG + "%s was not found."
 I_CAL_UPDATE_TASK = I_FLAG + "Running calendar update task."
 I_CAL_CLEAR = I_FLAG + "Clearing previous events."
 I_CAL_UPDATE_INSERT = I_FLAG + "Pushing event: %s - %s"
-
+I_TASK_RUN = I_FLAG + "Running task: %s"
+I_TASK_RUN_COMPLETE = I_FLAG + "Task complete: %s"
 
 W_FLAG = "[WARN] "
 
