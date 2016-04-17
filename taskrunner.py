@@ -1,5 +1,5 @@
 ## Runs all tasks and pushes the result to data.sqlite.
-from os import listdir, sep
+from os import getcwd, sep, listdir
 
 from strings import *
 from ical_parser import get_ical
