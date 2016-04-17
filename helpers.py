@@ -2,7 +2,7 @@ from selenium import webdriver
 from strings import *
 
 '''Returns the first available browser which can be used as a driver.'''
-def getFirstAvailableBrowser(verbose=False):
+def get_first_available_browser(verbose=False):
     browsers = {
         'PhantomJS': lambda: webdriver.PhantomJS(),
         'Chrome': lambda: webdriver.Chrome(),
