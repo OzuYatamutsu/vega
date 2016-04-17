@@ -2,6 +2,10 @@ I_FLAG = "[INFO] "
 I_GET_BROWSER_PROG = I_FLAG + "Checking for %s support."
 I_GET_BROWSER_SUPPORT = I_FLAG + "Found %s in PATH!"
 I_GET_BROWSER_NSUPPORT = I_FLAG + "%s was not found."
+I_CAL_UPDATE_TASK = I_FLAG + "Running calendar update task."
+I_CAL_CLEAR = I_FLAG + "Clearing previous events."
+I_CAL_UPDATE_INSERT = I_FLAG + "Pushing event: %s - %s"
+
 
 W_FLAG = "[WARN] "
 
