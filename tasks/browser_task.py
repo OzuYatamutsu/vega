@@ -7,6 +7,7 @@ from tasks.task import Task
 
 class BrowserTask(Task):
     def __init__(self, run_func, setup_func = None):
+        Task.__init__(self)
         self.driver = get_first_available_browser()
         if self.driver is None:
             raise NotImplementedError("No browsers inited to run task: " + self.name)
