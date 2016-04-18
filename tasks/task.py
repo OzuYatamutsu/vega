@@ -4,9 +4,9 @@ class Task:
     def __init__(self):
         self.name = __file__
         self.result = ""
-    def setup():
+    def setup(self):
         raise NotImplementedError
-    def run():
+    def run(self):
         raise NotImplementedError
-    def commit_result():
+    def commit_result(self):
         raise NotImplementedError
