@@ -30,7 +30,7 @@ def update_calendars():
     return True
     
 def update_tasks():
-    for task in listdir(TASK_DIR):
+    for task in [item for item in listdir(TASK_DIR) if item.endswith('.py')]:
         print(I_TASK_RUN % task)
         path = TASK_DIR + sep + task
         exec(open(path).read())
