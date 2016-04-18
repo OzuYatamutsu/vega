@@ -5,8 +5,8 @@ class Task:
         self.name = __file__
         self.result = ""
     def setup():
-        pass
+        raise NotImplementedError
     def run():
-        pass
+        raise NotImplementedError
     def commit_result():
-        pass
+        raise NotImplementedError
