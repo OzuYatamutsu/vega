@@ -5,5 +5,5 @@
 ### Installation
 
 ```
-pip3 install icalendar requests
+pip3 install icalendar requests selenium==2.48
 ```
