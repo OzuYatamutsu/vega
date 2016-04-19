@@ -1,6 +1,5 @@
 ## Abstract class that represents a task to be run
 ## using a webdriver.
-
 from helpers import get_first_available_browser
 from db_commit import pull_data, push_data
 from tasks.task import Task
@@ -20,7 +19,7 @@ class BrowserTask(Task):
     def run(self):
         if self.run_func is None:
             raise NotImplementedError("No run_func defined for task: " + self.name)
-        self.run_func()
+        self.run_func(self.driver)
     def commit_result(self):
         push_data("INSERT INTO TaskResult (task_file, result) VALUES (?, ?)", (self.name, self.result))
         self.driver.quit()
