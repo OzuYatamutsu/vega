@@ -13,6 +13,9 @@ TASK_DIR = getcwd() + sep + "tasks"
 DELETE_CAL = "DELETE FROM Calendar"
 UPDATE_CAL = "INSERT INTO Calendar(start_time, description) VALUES (?, ?)"
 
+# Task classes
+IGNORE = ["task.py", "browser_task.py"]
+
 def do():
     update_calendars()
     update_tasks()
@@ -30,7 +33,7 @@ def update_calendars():
     return True
     
 def update_tasks():
-    for task in [item for item in listdir(TASK_DIR) if item.endswith('.py')]:
+    for task in [item for item in listdir(TASK_DIR) if item.endswith('.py') and item not in IGNORE]:
         print(I_TASK_RUN % task)
         path = TASK_DIR + sep + task
         exec(open(path).read())
