@@ -8,6 +8,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from strings import *
 from ical_parser import get_ical
 from db_commit import push_data, pull_data
+from browser_utils import *
 
 # Config
 from calendars import calendar_urls
