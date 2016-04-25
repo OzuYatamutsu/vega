@@ -1,4 +1,7 @@
 ## Useful aliases for selenium functions.
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 def inject_jquery_if_needed(browser):
     browser.execute_script('''if (typeof(jQuery) === "undefined") { 
@@ -8,10 +11,10 @@ def inject_jquery_if_needed(browser):
     }''')
 def set_text(browser, selector, text):
     inject_jquery_if_needed(browser);
-    browser.execute_script("jQuery(%s).text(%s)" % (selector, text))
+    browser.execute_script("""jQuery("%s").text("%s")""" % (selector, text))
 def set_value(browser, selector, value):
     inject_jquery_if_needed(browser);
-    browser.execute_script("jQuery(%s).val(%s)" % (selector, value))
+    browser.execute_script("""jQuery("%s").val("%s")""" % (selector, value))
 def wait_for_id(browser, id, timeout=10):
     WebDriverWait(browser, timeout).until(lambda browser: browser.find_element_by_id(id))
 def wait_for_class(browser, class_name, timeout=10):
