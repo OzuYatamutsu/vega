@@ -22,7 +22,8 @@ def run(browser):
     browser.execute_script("$('strong > span').attr('id', 'tar')")
     text = get_text_from_id(browser, 'tar')
     print("Amount due: " + text)
-    return 1
+    return text
     
 task = BrowserTask(run_func = run)
 task.run()
+task.commit_result()
