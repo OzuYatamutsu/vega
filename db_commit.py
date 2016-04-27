@@ -10,7 +10,7 @@ INIT_QUERIES = [
 ]
 INIT_QUERY_CHECK = "SELECT name FROM sqlite_master WHERE type = 'table'"
 INIT_SEED_CREDS = "INSERT OR IGNORE INTO UrlCredentials (url, username, password) VALUES ('%s', '%s', '%s')"
-GET_CRED = "SELECT username, password FROM UrlCredentials WHERE url = '%s'"
+GET_CRED = "SELECT username, password FROM UrlCredentials WHERE url = '%s' LIMIT 1"
 
 db = "data.sqlite"
 
@@ -38,7 +38,7 @@ def init_connection():
 def get_cred(url):
     init_if_required()
     conn, cur = init_connection()
-    return cur.execute(GET_CRED % url)
+    return cur.execute(GET_CRED % url).fetchall()[0]
     
 def init_if_required():
     conn, cur = init_connection()
@@ -46,4 +46,6 @@ def init_if_required():
         for query in INIT_QUERIES: cur.execute(query)
     for login in seed:
         cur.execute(INIT_SEED_CREDS % (login["url"], login["username"], login["password"]))
+    conn.commit()
+    conn.close()
     return
