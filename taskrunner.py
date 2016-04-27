@@ -4,7 +4,7 @@ from selenium import *
 
 from strings import *
 from ical_parser import get_ical
-from db_commit import push_data, pull_data
+from db_commit import push_data, pull_data, get_cred
 from browser_utils import *
 
 # Config
