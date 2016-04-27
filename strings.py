@@ -9,9 +9,13 @@ I_CAL_CLEAR = I_FLAG + "Clearing previous events."
 I_CAL_UPDATE_INSERT = I_FLAG + "Pushing event: %s - %s"
 I_TASK_RUN = I_FLAG + "Running task: %s"
 I_TASK_RUN_COMPLETE = I_FLAG + "Task complete: %s"
+I_BROWSERTASK_COMMIT = I_FLAG + "Committing result to db: %s at %s"
 
 W_FLAG = str(datetime.now()) + " [WARN] "
 
 E_FLAG = str(datetime.now()) + " [ERROR] "
 E_GET_BROWSER_NONE = E_FLAG + """No compatible browsers were found in PATH! 
 Please install one of the following:"""
+E_BROWSERTASK_NO_BROWSERS = E_FLAG + "No browsers inited to run task: %s"
+E_BROWSERTASK_NO_SETUP_FUNC = E_FLAG + "No setup_func defined for task: %s"
+E_BROWSERTASK_NO_RUN_FUNC = E_FLAG + "No run_func defined for task: %s"
