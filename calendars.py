@@ -1,4 +1,4 @@
-## Config: Put URLs to ICS endpoints in the array below.
+## Config: Put URLs to ICS endpoints in the list below.
 ## e.g. calendar_urls = [
 ##  "https://path-to-cal.com/calendar.ics",
 ##  "http://path-to-second-cal.com/?cal=my_cal",
