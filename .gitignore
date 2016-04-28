@@ -42,3 +42,7 @@ node_modules
 __pycache__/
 */.DS_Store
 *.sqlite
+
+# Auto-installed files with 
+calendar.py
+db_seed.py
