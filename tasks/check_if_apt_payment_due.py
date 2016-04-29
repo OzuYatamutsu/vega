@@ -1,6 +1,8 @@
 ## Checks if my apartment payment is due.
 from tasks.browser_task import BrowserTask
 
+HUMAN_STR = "Your rent is %s."
+
 def run(browser):
     url = "https://milestonecorporate.residentportal.com/resident_portal/"
     print("Navigating.")
@@ -22,8 +24,8 @@ def run(browser):
     browser.execute_script("$('strong > span').attr('id', 'tar')")
     text = get_text_from_id(browser, 'tar')
     print("Amount due: " + text)
-    return (test, "green" if "0.00" in text else "red")
+    return (text, "green" if "0.00" in text else "red")
     
-task = BrowserTask(run_func = run)
+task = BrowserTask(run_func = run, humanized_template = HUMAN_STR)
 task.run()
 task.commit_result()
