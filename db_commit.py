@@ -3,9 +3,12 @@
 from sqlite3 import connect
 from db_seed import seed
 
+# Color determines how the result is rendered on the result page.
+# Humanized_template determines how to display the result on the result page.
+# e.g. "Your calendar says that your rent %s."
 INIT_QUERIES = [
     "CREATE TABLE Calendar (start_time, description)",
-    "CREATE TABLE TaskResult (task_file, result, timestamp, UNIQUE(task_file))",
+    "CREATE TABLE TaskResult (task_file, result, timestamp, color, humanized_template, UNIQUE(task_file))",
     "CREATE TABLE UrlCredentials (url, username, password, UNIQUE(url))"
 ]
 INIT_QUERY_CHECK = "SELECT name FROM sqlite_master WHERE type = 'table'"

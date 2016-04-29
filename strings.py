@@ -10,6 +10,7 @@ I_CAL_UPDATE_INSERT = I_FLAG + "Pushing event: %s - %s"
 I_TASK_RUN = I_FLAG + "Running task: %s"
 I_TASK_RUN_COMPLETE = I_FLAG + "Task complete: %s"
 I_BROWSERTASK_COMMIT = I_FLAG + "Committing result to db: %s at %s"
+I_THROWUP_START = I_FLAG + "Outputting HTML."
 
 W_FLAG = str(datetime.now()) + " [WARN] "
 

@@ -4,6 +4,7 @@ class Task:
     def __init__(self):
         self.name = __file__
         self.result = ""
+        self.humanized_template = ""
     def setup(self):
         raise NotImplementedError
     def run(self):

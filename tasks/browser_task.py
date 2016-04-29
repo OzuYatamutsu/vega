@@ -7,12 +7,13 @@ from strings import *
 from time import time
 
 class BrowserTask(Task):
-    def __init__(self, run_func, setup_func = None):
+    def __init__(self, run_func, humanized_template, setup_func = None):
         Task.__init__(self)
         self.driver = get_first_available_browser(True)
         if self.driver is None:
             raise NotImplementedError(E_BROWSERTASK % self.name)
         self.run_func = run_func
+        self.humanized_template = humanized_template
         self.setup_func = setup_func
         self.result = None
     def setup(self):
@@ -26,6 +27,6 @@ class BrowserTask(Task):
     def commit_result(self):
         timestamp = str(time())
         print(I_BROWSERTASK_COMMIT % (self.result, timestamp))
-        push_data("INSERT OR REPLACE INTO TaskResult (task_file, result, timestamp) VALUES (?, ?, ?)", (self.name, self.result, timestamp))
+        push_data("INSERT OR REPLACE INTO TaskResult (task_file, result, timestamp, color, humanized_template) VALUES (?, ?, ?, ?, ?)", (self.name, self.result[0], timestamp, self.result[1], self.humanized_template))
         self.driver.quit()
         return True
