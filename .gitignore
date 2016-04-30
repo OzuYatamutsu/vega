@@ -46,3 +46,6 @@ __pycache__/
 # Auto-installed files with 
 calendar.py
 db_seed.py
+
+# Output files
+output.html
