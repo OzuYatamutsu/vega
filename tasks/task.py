@@ -2,7 +2,7 @@
 
 class Task:
     def __init__(self):
-        self.name = __file__
+        self.name = __file__.split('\\')[-1]
         self.result = ""
         self.humanized_template = ""
     def setup(self):

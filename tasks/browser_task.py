@@ -11,7 +11,7 @@ class BrowserTask(Task):
         Task.__init__(self)
         self.driver = get_first_available_browser(True)
         if self.driver is None:
-            raise NotImplementedError(E_BROWSERTASK % self.name)
+            raise NotImplementedError(E_BROWSERTASK_NO_BROWSERS % self.name)
         self.run_func = run_func
         self.humanized_template = humanized_template
         self.setup_func = setup_func
