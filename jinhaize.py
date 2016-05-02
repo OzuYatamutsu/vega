@@ -15,3 +15,9 @@ def jinhaize(task_file):
     return (humanized_template % \
         ('<font color="%s"><strong>%s</strong></font>' % (color, result)) \
         ) + (" (Last updated %s)" % timestamp)
+
+def jinhaize_event(calendar_event):
+    timestamp = calendar_event[0]
+    event_title = calendar_event[1]
+    
+    return ('Your next event is <font color="blue"><strong>%s</strong></font> at <font color="blue">%s</font>.') % (event_title, timestamp)
