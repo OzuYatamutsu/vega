@@ -40,5 +40,3 @@ def update_tasks():
         path = TASK_DIR + sep + task
         exec(open(path).read())
         print(I_TASK_RUN_COMPLETE % task)
-
-do()
