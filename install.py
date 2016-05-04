@@ -6,7 +6,7 @@ system("pip3 install icalendar requests selenium==2.48")
 
 print("Prepping config files.")
 if not path.isfile("calendars.py"):
-    with open("calendars.py") as f:
+    with open("calendars.py", "w") as f:
         f.write("""## Config: Put URLs to ICS endpoints in the list below.
 ## e.g. calendar_urls = [
 ##  "https://path-to-cal.com/calendar.ics",
@@ -17,7 +17,7 @@ calendar_urls = []
 """)
 
 if not path.isfile("db_seed.py"):
-    with open("db_seed.py") as f:
+    with open("db_seed.py", "w") as f:
         f.write("""## Config: Put URLs to username/passwords in the list below.
 ## e.g. seed = [{"url": "https://my-site.com/login", "username": "my-username", "password": "my-password"}]
 seed = []  
