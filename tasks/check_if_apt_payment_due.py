@@ -23,8 +23,8 @@ def run(browser):
     print("Getting value.")
     browser.execute_script("$('strong > span').attr('id', 'tar')")
     text = get_text_from_id(browser, 'tar')
+    return (text, "green" if float(text.replace("$", "").replace(",", "")) <= 0.0 else "red")  
     print("Amount due: " + text)
-    return (text, "green" if "0.00" in text else "red")
     
 task = BrowserTask(run_func = run, humanized_template = HUMAN_STR)
 task.run()
