@@ -7,9 +7,9 @@ from db_seed import seed
 # Humanized_template determines how to display the result on the result page.
 # e.g. "Your calendar says that your rent %s."
 INIT_QUERIES = [
-    "CREATE TABLE Calendar (start_time, description)",
-    "CREATE TABLE TaskResult (task_file, result, timestamp, color, humanized_template, UNIQUE(task_file))",
-    "CREATE TABLE UrlCredentials (url, username, password, UNIQUE(url))"
+    "CREATE TABLE IF NOT EXISTS Calendar (start_time, description)",
+    "CREATE TABLE IF NOT EXISTS TaskResult (task_file, result, timestamp, color, humanized_template, UNIQUE(task_file))",
+    "CREATE TABLE IF NOT EXISTS UrlCredentials (url, username, password, UNIQUE(url))"
 ]
 INIT_QUERY_CHECK = "SELECT name FROM sqlite_master WHERE type = 'table'"
 INIT_SEED_CREDS = "INSERT OR IGNORE INTO UrlCredentials (url, username, password) VALUES ('%s', '%s', '%s')"
@@ -45,7 +45,7 @@ def get_cred(url):
     
 def init_if_required():
     conn, cur = init_connection()
-    if len(cur.execute(INIT_QUERY_CHECK).fetchall()) == 0:
+    if len(cur.execute(INIT_QUERY_CHECK).fetchall()) != 3:
         for query in INIT_QUERIES: cur.execute(query)
     for login in seed:
         cur.execute(INIT_SEED_CREDS % (login["url"], login["username"], login["password"]))
