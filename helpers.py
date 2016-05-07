@@ -14,7 +14,7 @@ def get_first_available_browser(verbose=False):
     for browser in browsers:
         try:
             if verbose: print(I_GET_BROWSER_PROG % browser[0])
-            result = browser[1]()
+            result = browser[1](service_args=['--ignore-ssl-errors=true', '--ssl-protocol=any']) if browser[0] is 'PhantomJS' else browser[1]()
             print(I_GET_BROWSER_SUPPORT % browser[0])
             return result
         except:
