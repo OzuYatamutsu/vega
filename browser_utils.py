@@ -1,20 +1,17 @@
 ## Useful aliases for selenium functions.
+from requests import get
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-def inject_jquery_if_needed(browser):
-    browser.execute_script('''if (typeof(jQuery) === "undefined") { 
-    var script = document.createElement("script"); 
-    script.src = "https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js";
-    script.id = "vega-jq";
-    document.getElementsByTagName("head")[0].appendChild(script);
-    }''')
+def inject_jquery(browser):
+    jq = get("https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js").text
+    browser.execute_script(jq)
 def set_text(browser, selector, text):
-    inject_jquery_if_needed(browser)
+    inject_jquery(browser)
     browser.execute_script("""jQuery("%s").text("%s")""" % (selector, text))
 def set_value(browser, selector, value):
-    inject_jquery_if_needed(browser)
+    inject_jquery(browser)
     browser.execute_script("""jQuery("%s").val("%s")""" % (selector, value))
 def wait_for_id(browser, id, timeout=60):
     WebDriverWait(browser, timeout).until(lambda browser: browser.find_element_by_id(id))
