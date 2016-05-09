@@ -11,7 +11,7 @@ def main():
     with open("template.html", 'r') as f:
         template = f.read()
     for item in pull_data("SELECT task_file FROM TaskResult"):
-        results = results + jinhaize(item[0])
+        results = results + jinhaize(item[0]) + "<br />"
     next_event = pull_data("SELECT * FROM Calendar ORDER BY start_time ASC LIMIT 1")[0]
     events = jinhaize_event(next_event)
     with open("output.html", 'w') as f:
