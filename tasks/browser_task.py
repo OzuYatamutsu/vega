@@ -7,8 +7,8 @@ from strings import *
 from time import time
 
 class BrowserTask(Task):
-    def __init__(self, run_func, humanized_template, setup_func = None):
-        Task.__init__(self)
+    def __init__(self, name, run_func, humanized_template, setup_func = None):
+        Task.__init__(self, name)
         self.driver = get_first_available_browser(True)
         if self.driver is None:
             raise NotImplementedError(E_BROWSERTASK_NO_BROWSERS % self.name)

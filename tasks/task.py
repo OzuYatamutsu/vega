@@ -1,8 +1,8 @@
 ## Abstract class that represents a task to run.
 
 class Task:
-    def __init__(self):
-        self.name = __file__.split('\\')[-1]
+    def __init__(self, name):
+        self.name = name
         self.result = ""
         self.humanized_template = ""
     def setup(self):
