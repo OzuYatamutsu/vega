@@ -19,7 +19,7 @@ class ScriptTask(Task):
     def run(self):
         if self.run_func is None:
             raise NotImplementedError(E_SCRIPTTASK_NO_RUN_FUNC % self.name)
-        self.result = self.run_func(self.driver)
+        self.result = self.run_func()
     def commit_result(self):
         timestamp = str(time())
         print(I_SCRIPTTASK_COMMIT % (self.result, timestamp))
