@@ -21,8 +21,8 @@ def jinhaize_event(calendar_event):
     event_title = calendar_event[1]
     dt_timestamp = datetime.strptime(timestamp.split(" ")[0], '%Y-%m-%d')
     
-    return ('In <strong>%s</strong>: Your next event is <font color="blue"><strong>%s</strong></font> at <font color="blue">%s</font>.') % \
-    (humanize_tz_delta_days(dt_timestamp), event_title, timestamp)
+    return ('In <strong>%s</strong>: Your next event is <font color="blue"><strong>%s</strong></font> on <font color="blue">%s</font>.') % \
+    (humanize_tz_delta_days(dt_timestamp), event_title, timestamp.split(" ")[0])
 
 def humanize_tz_delta_days(dt):
     delta = dt - datetime.now()
