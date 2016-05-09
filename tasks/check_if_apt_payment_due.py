@@ -26,6 +26,6 @@ def run(browser):
     return (text, "green" if float(text.replace("$", "").replace(",", "")) <= 0.0 else "red")  
     print("Amount due: " + text)
     
-task = BrowserTask(run_func = run, humanized_template = HUMAN_STR)
+task = BrowserTask(name = task, run_func = run, humanized_template = HUMAN_STR)
 task.run()
 task.commit_result()

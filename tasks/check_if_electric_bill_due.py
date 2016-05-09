@@ -21,11 +21,12 @@ def run(browser):
     wait_for_class(browser, 'container12')
     
     print("Getting value.")
+    inject_jquery(browser)
     browser.execute_script("$('.occ_value.occ_bodyBold').attr('id', 'tar')")
     text = get_text_from_id(browser, 'tar')
     return (text, "green" if float(text.replace("$", "").replace(",", "")) <= 0.0 else "red")  
     print("Amount due: " + text)
     
-task = BrowserTask(run_func = run, humanized_template = HUMAN_STR)
+task = BrowserTask(name = task, run_func = run, humanized_template = HUMAN_STR)
 task.run()
 task.commit_result()
