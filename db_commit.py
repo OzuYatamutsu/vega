@@ -2,6 +2,7 @@
 
 from sqlite3 import connect
 from db_seed import seed
+from strings import *
 
 # Color determines how the result is rendered on the result page.
 # Humanized_template determines how to display the result on the result page.
@@ -14,6 +15,7 @@ INIT_QUERIES = [
 INIT_QUERY_CHECK = "SELECT name FROM sqlite_master WHERE type = 'table'"
 INIT_SEED_CREDS = "INSERT OR IGNORE INTO UrlCredentials (url, username, password) VALUES ('%s', '%s', '%s')"
 GET_CRED = "SELECT username, password FROM UrlCredentials WHERE url = '%s' LIMIT 1"
+GET_CRED_COUNT = "SELECT COUNT(url) FROM UrlCredentials"
 
 db = "data.sqlite"
 
@@ -43,6 +45,17 @@ def get_cred(url):
     conn, cur = init_connection()
     return cur.execute(GET_CRED % url).fetchall()[0]
     
+def update_cred_from_seed_file():
+    init_if_required()
+    conn, cur = init_connection()
+    before_count = int(pull_data(GET_CRED_COUNT)[0][0])
+    for login in seed:
+        cur.execute(INIT_SEED_CREDS % (login["url"], login["username"], login["password"]))
+    conn.commit()
+    conn.close()
+    after_count = int(pull_data(GET_CRED_COUNT)[0][0])
+    print(I_UPDATE_CRED_NEW_COUNT % (str(after_count - before_count)))
+
 def init_if_required():
     conn, cur = init_connection()
     if len(cur.execute(INIT_QUERY_CHECK).fetchall()) != 3:
