@@ -26,4 +26,5 @@ def jinhaize_event(calendar_event):
 
 def humanize_tz_delta_days(dt):
     delta = dt - datetime.now()
-    return "1 day" if delta.days == 1 else ("%s days" % delta.days)
+    num_days = delta.days + 1 # Correct off-by-one error
+    return "1 day" if num_days == 1 else ("%s days" % num_days)
