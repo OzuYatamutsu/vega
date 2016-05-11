@@ -1,15 +1,22 @@
 ## Checks current location.
+from strings import RESULT_SEP_TOKEN
 from tasks.script_task import ScriptTask
 from requests import get
 
-HUMAN_STR = "Our IP address is %s, which puts us in %s. The current weather: %s."
+HUMAN_STR = "Our current location is %s. Current weather: %s."
 
 def run():
-    ip_response = get("ipinfo.io").json()
-    weather_response = get("").json()    
+    WUNDERGROUND_API_LOC = "http://api.wunderground.com/api/%s/conditions/q/autoip.json"
+    api_key = get_cred(WUNDERGROUND_API_LOC)["password"]
+    result = get(WUNDERGROUND_API_LOC % api_key).json()
+    
+    location = result["current_observation"]["observation_location"]["full"]
+    conditions = result["current_observation"]["weather"]
+    temperature_c = result["current_observation"]["temp_c"] + "\xb0C"
+    temperature_f = result["current_observation"]["temp_f"] + "\xb0F"
 
-return (text, "green" if float(text.replace("$", "").replace(",", "")) <= 0.0 else "red")  
-    print("Amount due: " + text)
+    text = location + RESULT_SEP_TOKEN + ("%s, %s" % (conditions, temperature_c))
+    return (text, "blue")
     
 task = ScriptTask(name = task, run_func = run, humanized_template = HUMAN_STR)
 task.run()
