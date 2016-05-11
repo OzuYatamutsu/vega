@@ -17,6 +17,7 @@ I_UPDATE_CRED_NEW_COUNT = I_FLAG + "%s new credentials added to db."
 W_FLAG = str(datetime.now()) + " [WARN] "
 
 E_FLAG = str(datetime.now()) + " [ERROR] "
+E_TASK_RUN_FAIL = E_FLAG + "Task %s failed to complete."
 E_GET_BROWSER_NONE = E_FLAG + """No compatible browsers were found in PATH! 
 Please install one of the following:"""
 E_BROWSERTASK_NO_BROWSERS = E_FLAG + "No browsers inited to run task: %s"

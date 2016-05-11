@@ -38,5 +38,9 @@ def update_tasks():
     for task in [item for item in listdir(TASK_DIR) if item.endswith('.py') and item not in IGNORE]:
         print(I_TASK_RUN % task)
         path = TASK_DIR + sep + task
-        exec(open(path).read())
-        print(I_TASK_RUN_COMPLETE % task)
+        try:
+            exec(open(path).read())
+            print(I_TASK_RUN_COMPLETE % task)
+        except:
+            print(E_TASK_RUN_FAIL % task)
+            continue
