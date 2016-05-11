@@ -10,13 +10,15 @@ def jinhaize(task_file):
     data = pull_data(QUERY % task_file)[0]
    
     timestamp = ctime(float(data[0]))
-    result = data[1].split(RESULT_SEP_TOKEN)
+    results = data[1].split(RESULT_SEP_TOKEN)
     humanized_template = data[2]
-    color = data[3]
-    # TODO multiple result support
-    return (humanized_template % \
-        ('<font color="%s"><strong>%s</strong></font>' % (color, result)) \
-        ) + (" (Last updated %s)" % timestamp)
+    color = data[3]    
+    formatted_results = []
+
+    for index in range(0, len(results)):
+        formatted_results.append(('<font color="%s"><strong>%s</strong></font>' \
+            % tuple([color, results[index]])))
+    return (humanized_template % tuple(formatted_results)) + (" (Last updated %s)" % timestamp)
 
 def jinhaize_event(calendar_event): 
     timestamp = calendar_event[0]
