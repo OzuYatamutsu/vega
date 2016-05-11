@@ -41,6 +41,7 @@ def update_tasks():
         try:
             exec(open(path).read())
             print(I_TASK_RUN_COMPLETE % task)
-        except:
+        except Exception as e:
             print(E_TASK_RUN_FAIL % task)
+            print(e)
             continue
