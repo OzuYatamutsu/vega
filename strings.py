@@ -1,4 +1,5 @@
 from datetime import datetime
+RESULT_SEP_TOKEN = "/_/"
 
 I_FLAG = str(datetime.now()) + " [INFO] "
 I_GET_BROWSER_PROG = I_FLAG + "Checking for %s support."

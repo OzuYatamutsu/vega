@@ -2,6 +2,7 @@
 from db_commit import pull_data
 from datetime import datetime
 from time import ctime
+from strings import RESULT_SEP_TOKEN
 
 QUERY = "SELECT timestamp, result, humanized_template, color FROM TaskResult WHERE task_file = '%s' LIMIT 1"
 
@@ -9,9 +10,10 @@ def jinhaize(task_file):
     data = pull_data(QUERY % task_file)[0]
    
     timestamp = ctime(float(data[0]))
-    result = data[1]
+    result = data[1].split(RESULT_SEP_TOKEN)
     humanized_template = data[2]
     color = data[3]
+    # TODO multiple result support
     return (humanized_template % \
         ('<font color="%s"><strong>%s</strong></font>' % (color, result)) \
         ) + (" (Last updated %s)" % timestamp)
