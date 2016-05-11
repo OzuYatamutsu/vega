@@ -16,7 +16,7 @@ DELETE_CAL = "DELETE FROM Calendar"
 UPDATE_CAL = "INSERT INTO Calendar(start_time, description) VALUES (?, ?)"
 
 # Task classes
-IGNORE = ["task.py", "browser_task.py"]
+IGNORE = ["task.py", "browser_task.py", "script_task.py"]
 
 def do():
     update_calendars()
