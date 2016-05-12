@@ -10,7 +10,7 @@ def main():
     print(I_THROWUP_START)
     with open("template.html", 'r') as f:
         template = f.read()
-    for item in pull_data("SELECT task_file FROM TaskResult"):
+    for item in pull_data("SELECT task_file FROM TaskResult ORDER BY task_file ASC"):
         results = results + jinhaize(item[0]) + "<br />"
     next_event = pull_data("SELECT * FROM Calendar ORDER BY start_time ASC LIMIT 1")[0]
     events = jinhaize_event(next_event)
