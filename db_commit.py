@@ -47,14 +47,15 @@ def get_cred(url):
     
 def update_cred_from_seed_file():
     init_if_required()
-    conn, cur = init_connection()
     before_count = int(pull_data(GET_CRED_COUNT)[0][0])
+    conn, cur = init_connection()
     for login in seed:
         cur.execute(INIT_SEED_CREDS % (login["url"], login["username"], login["password"]))
     conn.commit()
     conn.close()
     after_count = int(pull_data(GET_CRED_COUNT)[0][0])
-    print(I_UPDATE_CRED_NEW_COUNT % (str(after_count - before_count)))
+    #print(I_UPDATE_CRED_NEW_COUNT % (str(after_count - before_count)))
+    print(I_UPDATE_CRED)
 
 def init_if_required():
     conn, cur = init_connection()

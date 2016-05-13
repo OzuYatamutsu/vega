@@ -13,6 +13,7 @@ I_TASK_RUN_COMPLETE = I_FLAG + "Task complete: %s"
 I_BROWSERTASK_COMMIT = I_FLAG + "Committing result to db: %s at %s"
 I_SCRIPTTASK_COMMIT = I_FLAG + "Committing result to db: %s at %s"
 I_THROWUP_START = I_FLAG + "Outputting HTML."
+I_UPDATE_CRED_NEW_COUNT = I_FLAG + "Credentials updated."
 I_UPDATE_CRED_NEW_COUNT = I_FLAG + "%s new credentials added to db."
 
 W_FLAG = str(datetime.now()) + " [WARN] "
