@@ -3,7 +3,7 @@ from strings import RESULT_SEP_TOKEN
 from tasks.script_task import ScriptTask
 from requests import get
 
-HUMAN_STR = "Our current location is %s. Current weather: %s."
+HUMAN_STR = "Our current location is %s. Current weather: %s (%s humidity)."
 
 def run():
     WUNDERGROUND_API_LOC = "http://api.wunderground.com/api/%s/conditions/q/autoip.json"
@@ -12,10 +12,12 @@ def run():
     
     location = result["current_observation"]["observation_location"]["full"]
     conditions = result["current_observation"]["weather"]
+    humidity = result["current_observation"]["relative_humidity"]
     temperature_c = str(result["current_observation"]["temp_c"]) + "\xb0C"
     temperature_f = str(result["current_observation"]["temp_f"]) + "\xb0F"
 
-    text = location + RESULT_SEP_TOKEN + ("%s, %s" % (conditions, temperature_c))
+    text = location + RESULT_SEP_TOKEN + ("%s, %s" % (conditions, temperature_c)) + \
+        RESULT_SEP_TOKEN + humidity
     return (text, "blue")
     
 task = ScriptTask(name = task, run_func = run, humanized_template = HUMAN_STR)
