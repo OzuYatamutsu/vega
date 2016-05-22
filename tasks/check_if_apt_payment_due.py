@@ -13,17 +13,19 @@ def run(browser):
     set_value(browser, '#email', email)
     print("Setting password.")
     set_value(browser, '#password', password)
-    
+
     print("Submitting form.")
-    browser.find_element_by_id('authentication').submit()
-    
-    print("Waiting...")
-    wait_for_class(browser, 'modulePay')
+    browser.execute_script("this.handleLogin()")
+
+    print("Navigating.")
+    browser.get(url)
     
     print("Getting value.")
-    browser.execute_script("$('strong > span').attr('id', 'tar')")
-    text = get_text_from_id(browser, 'tar')
-    return (text, "green" if float(text.replace("$", "").replace(",", "")) <= 0.0 else "red")  
+    text = get_text_from_class(browser, 'pay-amount')
+    is_green = "green" in browser.find_element_by_class_name('pay-amount').get_attribute('class')
+    text = ("-" + text) if (is_green and float(text.replace('$', '').replace(',', '')) > 0) else text
+    return (text, "green" if is_green else "red")
+    #return (text, "green" if float(text.replace("$", "").replace(",", "")) <= 0.0 else "red")  
     print("Amount due: " + text)
     
 task = BrowserTask(name = task, run_func = run, humanized_template = HUMAN_STR)
