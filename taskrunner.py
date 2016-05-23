@@ -1,5 +1,5 @@
 ## Runs all tasks and pushes the result to data.sqlite.
-from os import getcwd, sep, listdir
+from os import getcwd, sep, listdir, system
 from selenium import *
 from datetime import datetime, time
 
