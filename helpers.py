@@ -27,3 +27,13 @@ def get_first_available_browser(verbose=False):
     print(E_GET_BROWSER_NONE)
     for browser in browsers: print(browser[0])
     return None
+
+def get_browser():
+    try:
+        result = webdriver.PhantomJS(service_args=['--ignore-ssl-errors=true', '--ssl-protocol=any'])
+        print(I_GET_BROWSER_SUPPORT % "PhantomJS")
+        result.set_window_size(WINDOW_WIDTH, WINDOW_HEIGHT)
+        return result
+    except:
+        print(I_GET_BROWSER_NSUPPORT % browser[0])
+    return None

@@ -1,6 +1,6 @@
 ## Abstract class that represents a task to be run
 ## using a webdriver.
-from helpers import get_first_available_browser
+from helpers import get_browser
 from db_commit import pull_data, push_data
 from tasks.task import Task
 from strings import *
@@ -9,7 +9,7 @@ from time import time
 class BrowserTask(Task):
     def __init__(self, name, run_func, humanized_template, setup_func = None):
         Task.__init__(self, name)
-        self.driver = get_first_available_browser(True)
+        self.driver = get_browser()
         if self.driver is None:
             raise NotImplementedError(E_BROWSERTASK_NO_BROWSERS % self.name)
         self.run_func = run_func
