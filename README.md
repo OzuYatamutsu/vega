@@ -52,9 +52,28 @@ task.run()
 task.commit_result()
 ```
 
-### Installation
-Vega requires **PhantomJS** to be located in your path.
+## Run 'em tasks!
+```
+python3 doit.py
+```
+
+When done, it'll spit out an `output.html` in your current folder.
+
+## Database
+Vega maintains a sqlite database, which holds results of tasks, calendar events, and URL credentials.
+
+**To add calendar events to Vega**, add a URL to a public ICS file in `calendars.py`.
+**To add URL credentials to Vega**, add a username, password, and the URL it will be needed at to `db_seed.py`. You will use the URL to index into the credentials table, so save it if you're writing a `BrowserTask`.
+
+Run `db_commit.update_cred_from_seed_file()` to update the database. 
+
+## Installation
+Vega is written in Python3 and also requires **PhantomJS** to be located in your path.
+
+We also need the following packages:
 
 ```
-pip3 install icalendar requests selenium==2.48
+icalendar requests selenium==2.48
 ```
+
+You can automate getting these dependencies, as well as generating `calendars.py` and `db_seed.py`, by running `python3 install.py`.
