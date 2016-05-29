@@ -1,5 +1,5 @@
 # Vega
-**Vega** is a framework for displaying output of scripts and calendars on a webpage. I use it to monitor my home!
+**Vega** is a framework for dumping output of scripts and calendars to formatted HTML. I use it to monitor my home!
 <img src="output-example.png" />
 
 ### Task flow
