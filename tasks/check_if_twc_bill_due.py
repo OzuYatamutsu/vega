@@ -18,7 +18,7 @@ def run(browser):
     browser.find_element_by_class_name('sign-in-btn').click()
     
     print("Waiting...")
-    wait_for_class(browser, 'balance-summary')
+    wait_for_class(browser, 'balance-summary', 300)
     
     print("Getting value.")
     inject_jquery(browser)
