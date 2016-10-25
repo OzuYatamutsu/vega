@@ -20,7 +20,7 @@ def parse_ical(cal):
     for event in cal.walk('vevent'):
         name = str(event.get('summary'))
         start_time = event.get('dtstart').dt
-        if len(event.get('rrule')) > 0:
+        if event.get('rrule') is not None and len(event.get('rrule')) > 0:
             rule = event.get('rrule').to_ical().decode("utf-8")
             rrule_def = rrule.rrulestr(rule, dtstart=start_time)
             # Overwrite start_time with next
